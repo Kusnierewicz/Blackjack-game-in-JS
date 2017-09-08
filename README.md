@@ -1,14 +1,16 @@
-# The codecademy assigment: Build Blackjack Game in JavaScript
+# The Codecademy assigment: Build Blackjack Game in JavaScript
 
 My first game made. It's simple JavaScript game to play in your browser. There is no graphic avalible yet.
 Game developed in 2014/2015.
+
+You can find the challenge [here](https://www.codecademy.com/courses/blackjack-part-1/0/1)
 
 ## Difference vs original rules
 
 * Ace as special card should be anabled to value "1" and "11" depends on players final result. Right now it can only have value "11"
 * You shouldn't be able to get cards after you reach "21" or more. Now you can keep collecting cards indefinitely
 * Card Deck is not generated once before the start of the game. Random card is generated every time there is need for one and two the same cards can appear in the game
-* Ai of dealer is very simple. He is drawing if his score is below "17"
+* AI of the dealer is very simple. He is drawing if his score is below "17"
 
 ### Blacjack Game overview:
 
