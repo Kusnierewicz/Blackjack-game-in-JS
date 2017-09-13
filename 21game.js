@@ -1,3 +1,29 @@
+$(document).ready(function() {
+
+	$('#reset').click(function() {
+    	$('img').remove();
+    });
+
+    // sketcher building and listening for mouse movement
+    $('#start').click(function() {
+    	$('img').remove();
+        playGame();
+    });
+});
+
+//Card face finder
+
+function CardFace(suit, figure){
+	suits = {1: "clubs", 2: "diamonds", 3: "hearts", 4: "spades"};
+	figures = {1: "ace", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8", 9: "9", 10: "10", 11: "jack", 12: "queen", 13: "king"};
+
+	var link = figures[figure] + "_of_" + suits[suit] + ".svg";
+
+	return link;
+}
+
+//console.log(CardFace(1,11));
+
 // Card Constructor
 function Card(suit, number){
 	var CardSuit = suit;
@@ -19,18 +45,30 @@ function Card(suit, number){
 	};
 }
 
-var deal = function(){
+var deal = function(whos){
 	var randomSuit = Math.floor(Math.random()*4+1);
 	var randomRank = Math.floor(Math.random()*13+1);
 	var newCard = new Card(randomSuit, randomRank);
+
+	// I would like to automate the correct div selection, but it dosn't work for now.
+	//var div_target = "'." + whos + "'";
+	//$(div_target).prepend('<img id="theImg" src="cards/' + CardFace(randomSuit, randomRank) + '" />')
+
+	if(whos == "p"){
+		$('.players_cards').prepend('<img id="theImg" src="cards/' + CardFace(randomSuit, randomRank) + '" />')
+	} else if(whos == "b") {
+		$('.brokers_cards').prepend('<img id="theImg" src="cards/' + CardFace(randomSuit, randomRank) + '" />')
+	}
+
 	return newCard;
 };
 
 
-function Hand(){
+function Hand(whos){
+	var who = whos
 	var cardArray = [];
 		for(i = 0; i < 2; i++) {
-    cardArray[i] = deal();
+    cardArray[i] = deal(who);
 	}
 	this.getHand = function() {
     return cardArray;
@@ -50,7 +88,7 @@ function Hand(){
 					}
 }
 }
-        
+
         //console.log("handSum in function is " + handSum);
         return handSum;
 	};
@@ -61,31 +99,33 @@ function Hand(){
 		}
 		return string;
 	};
-	this.hitMe = function(){
-    cardArray.push(deal());
+	this.hitMe = function(whos){
+    cardArray.push(deal(whos));
 	this.getHand();
 };
 }
 
 var playAsDealer = function(){
-	var dealerHand = new Hand();
+	var dealerHand = new Hand("b");
 	while(dealerHand.score() < 17){
 		alert("Dealer has: " + dealerHand.printHand());
-		dealerHand.hitMe();
+		dealerHand.hitMe("b");
 		alert("Now Dealer gets: " + dealerHand.printHand());
 	}
 		alert("Dealer has: " + dealerHand.printHand());
+		console.log(dealerHand.printHand())
 		return dealerHand;
 };
 
 var playAsUser = function(){
-	var playerHand = new Hand();
+	var playerHand = new Hand("p");
 	var decision = confirm("Your hand is "+ playerHand.printHand() + ": Hit OK to hit (take another card) or Cancel to stand");
 	while(decision === true){
-		playerHand.hitMe();
+		playerHand.hitMe("p");
 		decision = confirm("Your hand is "+ playerHand.printHand() + ": Hit OK to hit (take another card) or Cancel to stand");
 	}
 	alert("Now You have: " + playerHand.printHand());
+	console.log(playerHand.printHand())
 	return playerHand;
 };
 
@@ -127,8 +167,8 @@ var playGame = function(){
 };
 
 //console.log("debugging!");
-alert("debugging");
-playGame();
+//alert("debugging");
+//playGame();
 //playAsDealer();
 //playAsUser();
 
