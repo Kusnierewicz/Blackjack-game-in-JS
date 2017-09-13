@@ -1,9 +1,8 @@
-# The Codecademy assigment: Build Blackjack Game in JavaScript
+# The Codecademy assigment: Build Blackjack Game in JavaScript. You can check it out [here](http://kusnierewicz.github.io/Blackjack-game-in-JS/)
 
-My first game made. It's simple JavaScript game to play in your browser. There is no graphic avalible yet.
-Game developed in 2014/2015.
+My first game ever made. It's simple JavaScript game to play in your browser. There are simple graphics avalible - no styling yet.
 
-You can find the challenge [here](https://www.codecademy.com/courses/blackjack-part-1/0/1)
+Challenge can be found [here](https://www.codecademy.com/courses/blackjack-part-1/0/1)
 
 ## Difference vs original rules
 
