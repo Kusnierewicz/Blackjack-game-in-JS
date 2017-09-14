@@ -11,6 +11,8 @@ $(document).ready(function() {
     });
 });
 
+
+
 //Card face finder
 
 function CardFace(suit, figure){
@@ -21,8 +23,51 @@ function CardFace(suit, figure){
 
 	return link;
 }
+//Deck_upgrade_dosn't work properly yet
+function Deck(){
+	this.create = function(){
+  	var cardArray = [];
+  	var i = 1;
+  	var j = 1;
+  		for(i = 1; i < 14; i++){
+  			for(j = 1; j < 5; j++){	
+  				//console.log(j, i);
+  				cardArray.push(new Card(j, i));	
+  			} 
+  		}
+  	return shuffle(shuffle(cardArray));
+  };
+}
 
-//console.log(CardFace(1,11));
+////////////////////////////////
+//Deck Constructor Basic
+function deck_basic(){
+	var cardArray = [];
+	var i = 1;
+	var j = 1;
+		for(i = 1; i < 14; i++){
+			for(j = 1; j < 5; j++){	
+				//console.log(j, i);
+				cardArray.push(new Card(j, i));	
+			} 
+		}
+	return shuffle(shuffle(cardArray));
+}
+
+//check The Deck Basic Constructor
+for(i = 0; i < 52; i++){
+  console.log(array[i].getNumber() + " of suit "+array[i].getSuit());
+}
+
+//function for Deck suffling
+function shuffle(a) {
+    for (let i = a.length; i; i--) {
+        let j = Math.floor(Math.random() * i);
+        [a[i - 1], a[j]] = [a[j], a[i - 1]];
+    }
+	return a;
+}
+////////////////////////////////
 
 // Card Constructor
 function Card(suit, number){
@@ -55,9 +100,9 @@ var deal = function(whos){
 	//$(div_target).prepend('<img id="theImg" src="cards/' + CardFace(randomSuit, randomRank) + '" />')
 
 	if(whos == "p"){
-		$('.players_cards').prepend('<img id="theImg" src="cards/' + CardFace(randomSuit, randomRank) + '" />')
+		$('.players_cards').prepend('<img id="theImg" width="50%" height="50%" src="cards/' + CardFace(randomSuit, randomRank) + '" />');
 	} else if(whos == "b") {
-		$('.brokers_cards').prepend('<img id="theImg" src="cards/' + CardFace(randomSuit, randomRank) + '" />')
+		$('.brokers_cards').prepend('<img id="theImg" width="50%" height="50%" src="cards/' + CardFace(randomSuit, randomRank) + '" />');
 	}
 
 	return newCard;
@@ -65,7 +110,7 @@ var deal = function(whos){
 
 
 function Hand(whos){
-	var who = whos
+	var who = whos;
 	var cardArray = [];
 		for(i = 0; i < 2; i++) {
     cardArray[i] = deal(who);
@@ -113,7 +158,7 @@ var playAsDealer = function(){
 		alert("Now Dealer gets: " + dealerHand.printHand());
 	}
 		alert("Dealer has: " + dealerHand.printHand());
-		console.log(dealerHand.printHand())
+		console.log(dealerHand.printHand());
 		return dealerHand;
 };
 
@@ -125,7 +170,7 @@ var playAsUser = function(){
 		decision = confirm("Your hand is "+ playerHand.printHand() + ": Hit OK to hit (take another card) or Cancel to stand");
 	}
 	alert("Now You have: " + playerHand.printHand());
-	console.log(playerHand.printHand())
+	console.log(playerHand.printHand());
 	return playerHand;
 };
 
@@ -182,4 +227,3 @@ var playGame = function(){
 //myHand.printHand();
 
 //myHand.score();
-
