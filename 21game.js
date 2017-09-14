@@ -55,9 +55,9 @@ function deck_basic(){
 }
 
 //check The Deck Basic Constructor
-for(i = 0; i < 52; i++){
-  console.log(array[i].getNumber() + " of suit "+array[i].getSuit());
-}
+//for(i = 0; i < 52; i++){
+//  console.log(array[i].getNumber() + " of suit "+array[i].getSuit());
+//}
 
 //function for Deck suffling
 function shuffle(a) {
