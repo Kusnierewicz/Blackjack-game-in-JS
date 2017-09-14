@@ -89,9 +89,9 @@ var deal = function(whos){
 	//$(div_target).prepend('<img id="theImg" src="cards/' + cardFace(randomSuit, randomRank) + '" />')
 
 	if(whos == "p"){
-		$('.players_cards').prepend('<img id="theImg" width="50%" height="50%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
+		$('.players_cards').prepend('<img id="theImg" width="auto" height="10%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
 	} else if(whos == "b") {
-		$('.brokers_cards').prepend('<img id="theImg" width="50%" height="50%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
+		$('.dealers_cards').prepend('<img id="theImg" width="auto" height="10%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
 	}
 	return newCard;
 };
@@ -152,16 +152,21 @@ var playAsDealer = function(){
 
 var playAsUser = function(){
 	var playerHand = new Hand("p");
-	while(playerHand.score() < 21){
+	if(playerHand.score() < 21){
 		var decision = confirm("Your hand is "+ playerHand.printHand() + ". Your score is: " + playerHand.score() + ": Hit OK to hit (take another card) or Cancel to stand");
-		while(decision === true && playerHand.score() < 21){
-			playerHand.hitMe("p");
-			if(playerHand.score() < 21){
-			decision = confirm("Your hand is "+ playerHand.printHand() + ". Your score is: " + playerHand.score() + ": Hit OK to hit (take another card) or Cancel to stand");
-			} else {
-				alert("Now You have: " + playerHand.printHand() + ". Your score is: " + playerHand.score());
-			}
+	} else {
+		var decision = false;
+	}
+	while(decision === true && playerHand.score() < 21){
+		playerHand.hitMe("p");
+		if(playerHand.score() < 21){
+		decision = confirm("Your hand is "+ playerHand.printHand() + ". Your score is: " + playerHand.score() + ": Hit OK to hit (take another card) or Cancel to stand");
+		} else {
+			alert("Now You have: " + playerHand.printHand() + ". Your score is: " + playerHand.score());
 		}
+	}
+	if(decision === false){
+		alert("Now You have: " + playerHand.printHand() + ". Your score is: " + playerHand.score());
 	}
 	//alert("Now You have: " + playerHand.printHand() + ". Your score is: " + playerHand.score());
 	//console.log(playerHand.printHand());

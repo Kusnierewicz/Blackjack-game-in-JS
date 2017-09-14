@@ -7,16 +7,77 @@ body {
     background-color: #009900;
     margin: 0 0 40px;
     /* bottom = footer height */
-    padding: 25px;
+    padding: 0px;
+}
+
+header{
+    color: yellow;
+    border: 1px solid yellow;
+    text-align: center;
+    padding: 20px;
+}
+
+.title{
+    font-size: 20px;
+}
+
+.console{
+    color: red;
+    border: 1px solid red;
+    padding: 20px;
 }
 
 .centered{
+    color: blue;
+    border: 1px solid blue;
     height: 400px;
-    width: 550px;
-    margin: 200px auto;
+    width: 650px;
+    margin: 40px auto;
+}
+
+.results{
+    color: green;
+    border: 1px solid green;
+}
+
+.dealer{
+    color: black;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.dealers_cards{
+    color: grey;
+    border: 1px solid grey;
+}
+
+.player{
+    color: white;
+    border: 1px solid white;
+    text-align: center;
+    margin-top: 160px;
+}
+
+.players_cards{
+    color: purple;
+    border: 1px solid purple;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    height: 40px;
+    width: 100%;
+    background-color: black;
+    color: grey;
+}
+
+footer p{
+    padding: 10px 10px 10px 10px;
 }
 
 #theImg.resize {
-    height: 100px;
+    height: 20px;
     width: auto;
 }
+
