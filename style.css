@@ -1,0 +1,22 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background-color: #009900;
+    margin: 0 0 40px;
+    /* bottom = footer height */
+    padding: 25px;
+}
+
+.centered{
+    height: 400px;
+    width: 550px;
+    margin: 200px auto;
+}
+
+#theImg.resize {
+    height: 100px;
+    width: auto;
+}
