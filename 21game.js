@@ -15,49 +15,39 @@ $(document).ready(function() {
 
 //Card face finder
 
-function CardFace(suit, figure){
+function cardFace(suit, figure){
 	suits = {1: "clubs", 2: "diamonds", 3: "hearts", 4: "spades"};
 	figures = {1: "ace", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8", 9: "9", 10: "10", 11: "jack", 12: "queen", 13: "king"};
 
-	var link = figures[figure] + "_of_" + suits[suit] + ".svg";
+	var c = figures[figure] + "_of_" + suits[suit] + ".svg";
 
-	return link;
+	return c;
 }
-//Deck_upgrade_dosn't work properly yet
-function Deck(){
+//Deck_constructor
+function deck(){
 	this.create = function(){
   	var cardArray = [];
   	var i = 1;
   	var j = 1;
   		for(i = 1; i < 14; i++){
-  			for(j = 1; j < 5; j++){	
+  			for(j = 1; j < 5; j++){
   				//console.log(j, i);
-  				cardArray.push(new Card(j, i));	
-  			} 
+  				cardArray.push(new Card(j, i));
+  			}
   		}
   	return shuffle(shuffle(cardArray));
   };
 }
 
-////////////////////////////////
-//Deck Constructor Basic
-function deck_basic(){
-	var cardArray = [];
-	var i = 1;
-	var j = 1;
-		for(i = 1; i < 14; i++){
-			for(j = 1; j < 5; j++){	
-				//console.log(j, i);
-				cardArray.push(new Card(j, i));	
-			} 
-		}
-	return shuffle(shuffle(cardArray));
+//check The Deck Constructor
+function deckChecker(){
+	var array = new deck();
+	var array = array.create();
+	for(i = 0; i < 52; i++){
+		//console.log(array[i]);
+	  console.log(array[i].getNumber() + " of suit "+array[i].getSuit());
+	}
 }
-
-//check The Deck Basic Constructor
-//for(i = 0; i < 52; i++){
-//  console.log(array[i].getNumber() + " of suit "+array[i].getSuit());
-//}
 
 //function for Deck suffling
 function shuffle(a) {
@@ -67,6 +57,7 @@ function shuffle(a) {
     }
 	return a;
 }
+
 ////////////////////////////////
 
 // Card Constructor
@@ -91,20 +82,17 @@ function Card(suit, number){
 }
 
 var deal = function(whos){
-	var randomSuit = Math.floor(Math.random()*4+1);
-	var randomRank = Math.floor(Math.random()*13+1);
-	var newCard = new Card(randomSuit, randomRank);
+	var newCard = gameDeck.pop();
 
 	// I would like to automate the correct div selection, but it dosn't work for now.
 	//var div_target = "'." + whos + "'";
-	//$(div_target).prepend('<img id="theImg" src="cards/' + CardFace(randomSuit, randomRank) + '" />')
+	//$(div_target).prepend('<img id="theImg" src="cards/' + cardFace(randomSuit, randomRank) + '" />')
 
 	if(whos == "p"){
-		$('.players_cards').prepend('<img id="theImg" width="50%" height="50%" src="cards/' + CardFace(randomSuit, randomRank) + '" />');
+		$('.players_cards').prepend('<img id="theImg" width="50%" height="50%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
 	} else if(whos == "b") {
-		$('.brokers_cards').prepend('<img id="theImg" width="50%" height="50%" src="cards/' + CardFace(randomSuit, randomRank) + '" />');
+		$('.brokers_cards').prepend('<img id="theImg" width="50%" height="50%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
 	}
-
 	return newCard;
 };
 
@@ -152,25 +140,31 @@ function Hand(whos){
 
 var playAsDealer = function(){
 	var dealerHand = new Hand("b");
+	alert("Dealer has: " + dealerHand.printHand() + ". Dealer's score is: " + dealerHand.score());
 	while(dealerHand.score() < 17){
-		alert("Dealer has: " + dealerHand.printHand());
 		dealerHand.hitMe("b");
-		alert("Now Dealer gets: " + dealerHand.printHand());
+		alert("Dealer has dicided to take another card. He now has: " + dealerHand.printHand() + ". Dealer's score is: " + dealerHand.score());
 	}
-		alert("Dealer has: " + dealerHand.printHand());
-		console.log(dealerHand.printHand());
+		alert("Dealer has: " + dealerHand.printHand() + ". Dealer's score is: " + dealerHand.score());
+		//console.log(dealerHand.printHand());
 		return dealerHand;
 };
 
 var playAsUser = function(){
 	var playerHand = new Hand("p");
-	var decision = confirm("Your hand is "+ playerHand.printHand() + ": Hit OK to hit (take another card) or Cancel to stand");
-	while(decision === true){
-		playerHand.hitMe("p");
-		decision = confirm("Your hand is "+ playerHand.printHand() + ": Hit OK to hit (take another card) or Cancel to stand");
+	while(playerHand.score() < 21){
+		var decision = confirm("Your hand is "+ playerHand.printHand() + ". Your score is: " + playerHand.score() + ": Hit OK to hit (take another card) or Cancel to stand");
+		while(decision === true && playerHand.score() < 21){
+			playerHand.hitMe("p");
+			if(playerHand.score() < 21){
+			decision = confirm("Your hand is "+ playerHand.printHand() + ". Your score is: " + playerHand.score() + ": Hit OK to hit (take another card) or Cancel to stand");
+			} else {
+				alert("Now You have: " + playerHand.printHand() + ". Your score is: " + playerHand.score());
+			}
+		}
 	}
-	alert("Now You have: " + playerHand.printHand());
-	console.log(playerHand.printHand());
+	//alert("Now You have: " + playerHand.printHand() + ". Your score is: " + playerHand.score());
+	//console.log(playerHand.printHand());
 	return playerHand;
 };
 
@@ -206,24 +200,10 @@ var declareWinner = function(userHand, dealerHand){
  };
 
 var playGame = function(){
+	var gdeck = new deck();
+	// global variable
+	gameDeck = gdeck.create();
 	var playerHand = playAsUser();
 	var dealerHand = playAsDealer();
 	declareWinner(playerHand, dealerHand);
 };
-
-//console.log("debugging!");
-//alert("debugging");
-//playGame();
-//playAsDealer();
-//playAsUser();
-
-//var myHand = new Hand();
-//console.log("score is " + myHand.score());
-
-
-//console.log("debugging!2");
-//myHand.hitMe();
-
-//myHand.printHand();
-
-//myHand.score();
