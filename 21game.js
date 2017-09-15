@@ -2,11 +2,13 @@ $(document).ready(function() {
 
 	$('#reset').click(function() {
     	$('img').remove();
+    	$('.score h1').remove();
     });
 
     // sketcher building and listening for mouse movement
     $('#start').click(function() {
     	$('img').remove();
+    	$('.score h1').remove();
         playGame();
     });
 });
@@ -89,9 +91,9 @@ var deal = function(whos){
 	//$(div_target).prepend('<img id="theImg" src="cards/' + cardFace(randomSuit, randomRank) + '" />')
 
 	if(whos == "p"){
-		$('.players_cards').prepend('<img id="theImg" width="15%" height="15%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
+		$('.players_cards').prepend('<img id="theImg" width="12%" height="12%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
 	} else if(whos == "b") {
-		$('.dealers_cards').prepend('<img id="theImg" width="15%" height="15%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
+		$('.dealers_cards').prepend('<img id="theImg" width="12%" height="12%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
 	}
 	return newCard;
 };
@@ -119,8 +121,8 @@ function Hand(whos){
 					} else {
 					handSum -= 10;
 					}
-}
-}
+			}
+		}
 
         //console.log("handSum in function is " + handSum);
         return handSum;
@@ -147,6 +149,7 @@ var playAsDealer = function(){
 	}
 		alert("Dealer has: " + dealerHand.printHand() + ". Dealer's score is: " + dealerHand.score());
 		//console.log(dealerHand.printHand());
+		$('.dealer .score').prepend("<h1>Dealer's Score: " + dealerHand.score() + "</h1>" );
 		return dealerHand;
 };
 
@@ -170,6 +173,8 @@ var playAsUser = function(){
 	}
 	//alert("Now You have: " + playerHand.printHand() + ". Your score is: " + playerHand.score());
 	//console.log(playerHand.printHand());
+	//
+	$('.player .score').prepend("<h1>Player's Score: " + playerHand.score() + "</h1>" );
 	return playerHand;
 };
 

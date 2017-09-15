@@ -20,19 +20,74 @@ header{
 
 .title{
     font-size: 40px;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    border: none;
+    font: normal 48px/normal 'Merriweather', serif;
+    color: rgba(255,255,255,1);
+    text-align: center;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    white-space: pre;
+    text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #ff002e , 0 0 70px #ff002e , 0 0 80px #ff002e , 0 0 100px #ff002e ;
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
+
+.title:hover {
+    text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #00ffff , 0 0 70px #00ffff , 0 0 80px #00ffff , 0 0 100px #00ffff ;
+}
+
 
 .console{
+    position: relative;
+    width: 420px;
     color: red;
-    /*border: 1px solid red;*/
+    /*border: 1px solid red*/
+    margin: auto;
 }
 
-.console button{
-    font-size: 25px;
-    margin: 20px;
+.console a{
+    position: relative;
+    color: rgba(255,255,255,1);
+    text-decoration: none;
+    background-color: rgba(219,87,5,1);
+    font-weight: 700;
+    font-family: 'Yanone Kaffeesatz';
+    font-size: 3em;
+    display: block;
+    padding: 4px;
+    border-radius: 8px;
+    -moz-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+    box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+    margin: 20px auto;
+    width: 170px;
+    text-align: center;
+
+    -moz-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.console a:active {
+    -moz-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+}
+
+#start {
+    float: left;
+}
+
+#reset {
+    float: right;
 }
 
 .centered{
+    overflow: hidden;
     position: relative;
     color: blue;
     /*border: 1px solid blue;*/
@@ -54,6 +109,7 @@ header{
 }
 
 .dealers_cards{
+    padding: 10px;
     color: grey;
     /*border: 1px solid grey;*/
 }
@@ -67,6 +123,7 @@ header{
 }
 
 .players_cards{
+    padding: 10px;
     color: purple;
     /*border: 1px solid purple;*/
 }
@@ -88,4 +145,6 @@ footer p{
     height: 20px;
     width: auto;
 }*/
+
+
 
