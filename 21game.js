@@ -1,30 +1,30 @@
 $(document).ready(function() {
 
+	// reset button will reset the table
 	$('#reset').click(function() {
-    	$('img').remove();
+    	$('li').remove();
     	$('.score h1').remove();
+    	$('.dealers_cards').css("height", "122px");
+    	//$('.dealers_cards').css("padding", "10px 40px 10px 10px");
     });
 
-    // sketcher building and listening for mouse movement
+    // start button will reset the table and start the game
     $('#start').click(function() {
-    	$('img').remove();
+    	//$('.dealers_cards').css("padding", "10px 40px 10px 10px");
+    	$('li').remove();
     	$('.score h1').remove();
         playGame();
     });
 });
 
-
-
 //Card face finder
-
 function cardFace(suit, figure){
 	suits = {1: "clubs", 2: "diamonds", 3: "hearts", 4: "spades"};
 	figures = {1: "ace", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8", 9: "9", 10: "10", 11: "jack", 12: "queen", 13: "king"};
-
 	var c = figures[figure] + "_of_" + suits[suit] + ".svg";
-
 	return c;
 }
+
 //Deck_constructor
 function deck(){
 	this.create = function(){
@@ -46,7 +46,6 @@ function deckChecker(){
 	var array = new deck();
 	var array = array.create();
 	for(i = 0; i < 52; i++){
-		//console.log(array[i]);
 	  console.log(array[i].getNumber() + " of suit "+array[i].getSuit());
 	}
 }
@@ -60,9 +59,7 @@ function shuffle(a) {
 	return a;
 }
 
-////////////////////////////////
-
-// Card Constructor
+//Card Constructor
 function Card(suit, number){
 	var CardSuit = suit;
 	var CardNumber = number;
@@ -83,22 +80,25 @@ function Card(suit, number){
 	};
 }
 
+// Deal function provides players with cards and prepend card images with jQuery
 var deal = function(whos){
 	var newCard = gameDeck.pop();
 
 	// I would like to automate the correct div selection, but it dosn't work for now.
 	//var div_target = "'." + whos + "'";
 	//$(div_target).prepend('<img id="theImg" src="cards/' + cardFace(randomSuit, randomRank) + '" />')
-
 	if(whos == "p"){
-		$('.players_cards').prepend('<img id="theImg" width="12%" height="12%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
+		$('.players_cards ul').prepend('<li><a href="#"><img src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" /></a></li>');
 	} else if(whos == "b") {
-		$('.dealers_cards').prepend('<img id="theImg" width="12%" height="12%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
+		$('.dealers_cards').css("height", "");
+		$('.dealers_cards ul').prepend('<li><a href="#"><img src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" /></a></li>');
 	}
+	//script for prepending back of the card as second card at dealer's hand
+	//$('.dealers_cards').prepend('<img id="theBackImg" width="10%" height="10%" src="cards/back.jpg" />');
 	return newCard;
 };
 
-
+//Hand Object is keeping the score of a respective player
 function Hand(whos){
 	var who = whos;
 	var cardArray = [];
@@ -112,7 +112,6 @@ function Hand(whos){
 		var handSum = 0;
 		for(i=0;i<cardArray.length;i++){
 		handSum += cardArray[i].getValue();
-		//console.log("Card " + (i+1) + " = " + cardArray[i].getValue());
         if(handSum > 21 && (cardArray[0].getNumber() === 1 || cardArray[1].getNumber() === 1 || cardArray[2].getNumber() === 1)){
 			if(cardArray[0].getNumber() === 1 && cardArray[1].getNumber() === 1 && cardArray[2].getNumber() === 1){
 				handSum -= 30;
@@ -123,8 +122,6 @@ function Hand(whos){
 					}
 			}
 		}
-
-        //console.log("handSum in function is " + handSum);
         return handSum;
 	};
 	this.printHand = function(){
@@ -148,7 +145,6 @@ var playAsDealer = function(){
 		alert("Dealer has dicided to take another card. He now has: " + dealerHand.printHand() + ". Dealer's score is: " + dealerHand.score());
 	}
 		alert("Dealer has: " + dealerHand.printHand() + ". Dealer's score is: " + dealerHand.score());
-		//console.log(dealerHand.printHand());
 		$('.dealer .score').prepend("<h1>Dealer's Score: " + dealerHand.score() + "</h1>" );
 		return dealerHand;
 };
@@ -171,9 +167,6 @@ var playAsUser = function(){
 	if(decision === false){
 		alert("Now You have: " + playerHand.printHand() + ". Your score is: " + playerHand.score());
 	}
-	//alert("Now You have: " + playerHand.printHand() + ". Your score is: " + playerHand.score());
-	//console.log(playerHand.printHand());
-	//
 	$('.player .score').prepend("<h1>Player's Score: " + playerHand.score() + "</h1>" );
 	return playerHand;
 };

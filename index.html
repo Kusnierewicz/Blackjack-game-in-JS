@@ -24,23 +24,31 @@
         <div class="results">
             <div class="dealer">
                 <h1>Dealer's Hand:</h1>
-                <div class="dealers_cards">
+                <!--inline style to keep Player's Hand in the middle of the table-->
+                <div class="dealers_cards" style="height:122px">
+                    <ul>
 
+                    </ul>
                 </div>
                 <div class="score"></div>
             </div>
             <div class="player">
                 <h1>Player's Hand:</h1>
                 <div class="players_cards">
+                    <ul>
 
+                    </ul>
                 </div>
                 <div class="score"></div>
             </div>
         </div>
      </div>
+     <div class="gameConsole" style="visibility: hidden;">
+        <a href="javascript:void(0);" id="hit">Hit!</a>
+        <a href="javascript:void(0);" id="stand">Stand</a>
+    </div>
      <footer>
         <p>BlackJack Game written in JavaScript. Still in development...</p>
      </footer>
-
 </body>
 </html>
