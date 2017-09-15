@@ -6,14 +6,14 @@ Challenge can be found [here](https://www.codecademy.com/courses/blackjack-part-
 
 ## Game highlights
 
-* Ace as special card is avalueted as "1" or "11" depends on players final result.
-* Card Deck is generated and then shuffled twice before the start of the game.
+* Ace as a special card is avalueted as "1" or "11" depending on player final result.
+* The Card Deck is generated and then shuffled twice before the start of the game.
 * Player can't get any more cards after he reaches "21" or gets passed it.
 
 ## Difference vs original rules
 
 * There is no 2 cards on 2 cards phase. Player gets all his cards first, than Dealer gets all his cards next.
-* AI of the dealer is very simple. He is drawing next card if his score is below "17". Even if player has already lost.
+* AI of the dealer is very simple. He is drawing next card if his score is below "17". Even if a player has already lost.
 
 ### Blacjack Game overview:
 
