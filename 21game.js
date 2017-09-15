@@ -89,9 +89,9 @@ var deal = function(whos){
 	//$(div_target).prepend('<img id="theImg" src="cards/' + cardFace(randomSuit, randomRank) + '" />')
 
 	if(whos == "p"){
-		$('.players_cards').prepend('<img id="theImg" width="auto" height="10%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
+		$('.players_cards').prepend('<img id="theImg" width="15%" height="15%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
 	} else if(whos == "b") {
-		$('.dealers_cards').prepend('<img id="theImg" width="auto" height="10%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
+		$('.dealers_cards').prepend('<img id="theImg" width="15%" height="15%" src="cards/' + cardFace(newCard.getSuit(), newCard.getNumber()) + '" />');
 	}
 	return newCard;
 };
