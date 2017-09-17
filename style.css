@@ -15,7 +15,7 @@ header{
     color: yellow;
     /*border: 1px solid yellow;*/
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 .title{
@@ -26,7 +26,7 @@ header{
     box-sizing: border-box;
     padding: 10px;
     border: none;
-    font: normal 48px/normal 'Merriweather', serif;
+    font: normal 41px/normal 'Merriweather', serif;
     color: rgba(255,255,255,1);
     text-align: center;
     -o-text-overflow: clip;
@@ -156,13 +156,35 @@ header{
     /*border: 1px solid purple;*/
 }
 
+.pscore{
+    position: relative;
+    background-color: black;
+    height: 30px;
+    width: 100px;
+    margin: auto;
+    bottom: 140px;
+    border-radius: 4px;
+    -moz-box-shadow: 0px 9px 25px rgba(0,0,0,.7);
+    box-shadow: 0px 9px 25px rgba(0,0,0,.7);
+
+}
+
+.pscore p{
+    padding-top: 5px;
+    text-align: center;
+    color: yellow;
+    font-weight: 700;
+    font-family: ;
+    font-size: 1.2em;
+}
+
 .gameConsole{
     position: relative;
     width: 250px;
     color: red;
     /*border: 1px solid red*/
     margin: auto;
-    bottom: 100px;
+    bottom: 130px;
 }
 
 .gameConsole a{

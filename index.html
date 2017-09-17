@@ -4,8 +4,7 @@
 	<title>BlackJack's Game</title>
 	<link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatx:700">
-    <link async href="http://fonts.googleapis.com/css?family=Warnes" data-generated="http://enjoycss.com" rel="stylesheet" type="text/css"/>
+    <!--<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatx:700">-->
     <link href="https://fonts.googleapis.com/css?family=Merriweather:700" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" defer></script>
     <script type="text/javascript" src="21game.js" defer></script>
@@ -19,13 +18,13 @@
             <a href="javascript:void(0);" id="reset">Reset!</a>
         </div>
     </header>
-     <div class="centered">
+    <div class="centered">
 
         <div class="results">
             <div class="dealer">
                 <h1>Dealer's Hand:</h1>
                 <!--inline style to keep Player's Hand in the middle of the table-->
-                <div class="dealers_cards" style="height:122px">
+                <div class="dealers_cards" style="height:96px">
                     <ul>
 
                     </ul>
@@ -39,11 +38,13 @@
 
                     </ul>
                 </div>
-                <div class="score"></div>
+                <!--<div class="score"></div>-->
+
             </div>
         </div>
-     </div>
-     <div class="gameConsole" style="visibility: hidden;">
+    </div>
+    <div class="pscore"></div>
+    <div class="gameConsole" style="visibility: hidden;">
         <a href="javascript:void(0);" id="hit">Hit!</a>
         <a href="javascript:void(0);" id="stand">Stand</a>
     </div>
