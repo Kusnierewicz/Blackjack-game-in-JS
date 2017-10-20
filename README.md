@@ -31,3 +31,7 @@ Blackjack, also known as twenty-one, is a comparing card game between usually se
    3. Let the dealer draw additional cards until their hand exceeds 21.
 
 More info in [Wikipedia](https://en.wikipedia.org/wiki/Blackjack)
+
+## License
+
+\* See [license.txt](https://github.com/Kusnierewicz/Blackjack-game-in-JS/blob/master/LICENSE.txt) for usage details.
